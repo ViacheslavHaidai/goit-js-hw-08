@@ -71,14 +71,19 @@ const galleryMarkup = images
     ({ preview, original, description }) =>
       `<li class="gallery-item">
     <a class="gallery-link" href="${original}">
-    <img class="gallery-image" src="${preview}" data-sourse="${original}" alt="${description}" width="200"/>
+    <img class="gallery-image" src="${preview}" data-sourse="${original}" alt="${description}" width="360" height="200"/>
     </a></li>`
   )
   .join("");
 
 gallery.innerHTML = galleryMarkup;
 
-const link = document.querySelector(".gallery-link");
-link.addEventListener("click", () => {
-  prevent.default();
+const link = document.querySelector(".gallery");
+link.addEventListener("click", (event) => {
+  event.preventDefault();
+});
+
+gallery.addEventListener("click", (event) => {
+  const linkOriginal = event.target.dataset.sourse;
+  console.log(linkOriginal);
 });
