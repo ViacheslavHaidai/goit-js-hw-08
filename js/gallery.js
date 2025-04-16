@@ -88,23 +88,15 @@ gallery.addEventListener("click", (event) => {
   console.log(linkOriginal);
 });
 
-//====================================================
-function modal(image) {
-  const instance = basicLightBox.create(`
-    <img src="${image}" width="800" height="600"/>
-    `);
-  instance.show();
-}
-document.addEventListener("DOMContentLoaded", () => {
-  const gallery = document.querySelector(".gallery");
-  if (gallery) {
-    gallery.addEventListener("click", (event) => {
-      event.preventDefault();
-      const target = event.target;
-      if (target.tagName === "IMG") {
-        const image = target.getAttribute("data-sourse") || target.src;
-        openModal(image);
-      }
-    });
+//===================================================
+gallery.addEventListener("click", (event) => {
+  event.preventDefault();
+  const clickedImg = event.target;
+  if (!clickedImg.classList.contains("gallery-image")) {
+    return;
   }
+  const largeImgUrl = clickedImg.dataset.sourse;
+  const instance = basicLightbox.create(`
+    <img src="${largeImgUrl}" width="800" heigth="600"/> `);
+  instance.show();
 });
