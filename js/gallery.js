@@ -71,7 +71,7 @@ const galleryMarkup = images
     ({ preview, original, description }) =>
       `<li class="gallery-item">
     <a class="gallery-link" href="${original}">
-    <img class="gallery-image" src="${preview}" data-sourse="${original}" alt="${description}" width="360" height="200"/>
+    <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description}" width="360" height="200"/>
     </a></li>`
   )
   .join("");
@@ -84,18 +84,12 @@ link.addEventListener("click", (event) => {
 });
 
 gallery.addEventListener("click", (event) => {
-  const linkOriginal = event.target.dataset.sourse;
-  console.log(linkOriginal);
-});
-
-//===================================================
-gallery.addEventListener("click", (event) => {
   event.preventDefault();
   const clickedImg = event.target;
   if (!clickedImg.classList.contains("gallery-image")) {
     return;
   }
-  const largeImgUrl = clickedImg.dataset.sourse;
+  const largeImgUrl = clickedImg.dataset.source;
   const instance = basicLightbox.create(`
     <img src="${largeImgUrl}" width="800" heigth="600"/> `);
   instance.show();
